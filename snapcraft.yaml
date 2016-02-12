@@ -1,0 +1,54 @@
+name: wlan
+version: 0.0.0.1
+vendor: Steffen Kampmann <steffen.Kampmann@gmail.com>
+summary: WLAN
+description: ""
+architectures: [armhf, amd64]
+icon: icon.png
+config: ./magic-bin/config
+
+services:
+   webserver:
+      description: "snappy example: golang mini webserver"
+      start: ./magic-bin/golang-static-http
+      caps:
+       - networking
+       - network-service
+
+parts:
+
+   golang-static-http:
+      plugin: go
+      source: git://github.com/mikix/golang-static-http
+
+   magic-golang-static-http-makefile:
+      plugin: copy
+      source: magic-bin
+      files:
+         magic/magic-bin: golang-static-http
+         magic/Makefile: Makefile
+
+   magic-golang-static-http:
+      plugin: make
+      source: parts/magic-golang-static-http-makefile/install
+      after:
+       - golang-static-http
+       - magic-golang-static-http-makefile
+
+   config:
+      plugin: go
+      source: git://github.com/abbgrade/snappy-wlan-config
+
+   magic-config-makefile:
+      plugin: copy
+      source: magic-bin
+      files:
+         magic/magic-bin: config
+         magic/Makefile: Makefile
+
+   magic-config:
+      plugin: make
+      source: parts/magic-config-makefile/install
+      after:
+       - config
+       - magic-config-makefile
