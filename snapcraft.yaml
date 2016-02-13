@@ -2,10 +2,11 @@ name: wlan
 version: 0.0.0.1
 vendor: Steffen Kampmann <steffen.Kampmann@gmail.com>
 summary: WLAN
-description: ""
+description: 
+   ...
 architectures: [armhf, amd64]
 icon: icon.png
-config: ./magic-bin/config
+config: magic-bin/snappy-wlan-config
 
 services:
    webserver:
@@ -17,16 +18,31 @@ services:
 
 parts:
 
+   magic-bin:
+      plugin: copy
+      source: magic-bin
+      files:
+         magic-bin/README.md: README.md
+      stage:
+       - nil
+
    golang-static-http:
       plugin: go
       source: git://github.com/mikix/golang-static-http
+      snap:
+       - -bin/golang-static-http
 
    magic-golang-static-http-makefile:
       plugin: copy
       source: magic-bin
       files:
-         magic/magic-bin: golang-static-http
-         magic/Makefile: Makefile
+         magic-bin/magic-bin: golang-static-http
+         magic-bin/Makefile: Makefile
+      after:
+       - magic-bin
+      stage:
+       - -Makefile
+       - -golang-static-http
 
    magic-golang-static-http:
       plugin: make
@@ -35,20 +51,27 @@ parts:
        - golang-static-http
        - magic-golang-static-http-makefile
 
-   config:
+   snappy-wlan-config:
       plugin: go
       source: git://github.com/abbgrade/snappy-wlan-config
+      snap:
+       - -bin/snappy-wlan-config
 
-   magic-config-makefile:
+   magic-snappy-wlan-config-makefile:
       plugin: copy
       source: magic-bin
       files:
-         magic/magic-bin: config
-         magic/Makefile: Makefile
-
-   magic-config:
-      plugin: make
-      source: parts/magic-config-makefile/install
+         magic-bin/magic-bin: snappy-wlan-config
+         magic-bin/Makefile: Makefile
       after:
-       - config
-       - magic-config-makefile
+       - magic-bin
+      stage:
+       - -Makefile
+       - -snappy-wlan-config
+
+   magic-snappy-wlan-config:
+      plugin: make
+      source: parts/magic-snappy-wlan-config-makefile/install
+      after:
+       - snappy-wlan-config
+       - magic-snappy-wlan-config-makefile

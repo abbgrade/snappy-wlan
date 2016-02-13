@@ -5,6 +5,7 @@ SNAPNAME = $(shell find ./ -type f ! -iname "Makefile" -printf "%f\n" | head -1)
 SNAPROOT = $(shell cd ../../.. && pwd)
 
 trace:
+	@echo
 	@echo DESTDIR:   $(DESTDIR)
 	@echo SNAPNAME:  $(SNAPNAME)
 	@echo SNAPROOT:  $(SNAPROOT)
@@ -25,13 +26,7 @@ build_arm: magic-bin/arm-linux-gnueabihf
 snap: trace build_amd64 build_arm
 	cp $(SNAPNAME) $(SNAPROOT)/parts/magic-bin/build/magic-bin
 
-pull:
-	echo foobar
-
 install:
 	cp -R  $(SNAPROOT)/parts/magic-bin/build/magic-bin ../install/
-	rm $(SNAPROOT)/parts/magic-$(SNAPNAME)-makefile/install/*
-	rm ./*
-
-clean:
-	rm -rf $(SNAPROOT)/parts/magic-bin
+	@#rm $(SNAPROOT)/parts/magic-$(SNAPNAME)-makefile/install/*
+	@#rm ./*
