@@ -25,9 +25,9 @@ Snappy WLAN enables the user to observe and intervene into the network usage of 
 
 ### Plannig
 
-* [] UC1 : Wifi Client
-* [] UC2 : Wifi Hotspot
-* [] UC3 : IoT-DMZ
+- [ ] UC1 : Wifi Client
+- [ ] UC2 : Wifi Hotspot
+- [ ] UC3 : IoT-DMZ
 
 ## Installation
 
