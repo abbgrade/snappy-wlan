@@ -23,7 +23,9 @@ Snappy WLAN enables the user to observe and intervene into the network usage of 
 
 ## Changelog
 
-### Plannig
+### In Progress
+
+### Planned
 
 - [ ] UC1 : Wifi Client
 - [ ] UC2 : Wifi Hotspot

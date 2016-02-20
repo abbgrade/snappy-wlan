@@ -3,7 +3,10 @@ version: 0.0.0.1
 vendor: Steffen Kampmann <steffen.Kampmann@gmail.com>
 summary: WLAN
 description: 
-   ...
+   ====
+
+   Configures WLAN connections.
+
 architectures: [armhf, amd64]
 icon: icon.png
 config: magic-bin/snappy-wlan-config
