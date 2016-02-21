@@ -56,7 +56,9 @@ parts:
 
    snappy-wlan-config:
       plugin: go
-      source: git://github.com/abbgrade/snappy-wlan-config
+      source: git://github.com/abbgrade/snappy-wlan-config/
+      source-type: git
+      source-tag: 0.0.1.0
       snap:
        - -bin/snappy-wlan-config
 
