@@ -33,17 +33,17 @@ Snappy WLAN enables the user to observe and intervene into the network usage of 
 
 ## Installation
 
-## Ubuntu Core on Raspberry PI2
+### Ubuntu Core on Raspberry PI2
 
 The command *snapcraft* builds the snapp that can be deployed on your device using snappy or snappy-remote.
 
 For more help see https://developer.ubuntu.com/en/snappy/ .
 
-## Ubuntu on Raspberry PI2
+### Ubuntu on Raspberry PI2
 
 Since Ubuntu Core / Snapcraft has issues the first step is to have it working with Ubuntu Server.
 
-### System Setup
+#### System Setup
 
 Setup Ubuntu on the raspberry pi2 as explained in the [Ubuntu Wiki](https://wiki.ubuntu.com/ARM/RaspberryPi).
 You don't need to install any desktop environment but may need to configure your keyboard layout with:
@@ -67,7 +67,7 @@ Update the system with:
 
     sudo apt-get update && sudo apt-get upgrade
 
-### snappy-wlan Setup
+#### snappy-wlan Setup
 
     sudo apt-get install git golang build-essential
 
@@ -75,7 +75,7 @@ Update the system with:
     cd snappy-wlan
     make test
 
-### Wifi Setup
+#### Wifi Setup
 
     sudo apt-get install wpasupplicant
 
@@ -94,3 +94,8 @@ Now you chan check the generated files:
 
     cat /etc/network/interfaces.d/wlan0
     cat wifi_client_wlan0.conf
+
+Restart the network stack and check the result:
+
+    sudo /etc/init.d/networking restart
+    ifconfig
