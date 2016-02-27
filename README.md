@@ -77,6 +77,8 @@ Update the system with:
 
 ### Wifi Setup
 
+    sudo apt-get install wpasupplicant
+
 Create a wlan config *test_config.yaml*
 
     config:
