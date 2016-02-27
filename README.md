@@ -75,4 +75,20 @@ Update the system with:
     cd snappy-wlan
     make test
 
+### Wifi Setup
 
+Create a wlan config *test_config.yaml*
+
+    config:
+      wlan:
+        networks:
+        + interface: wlan0
+          ssid: WLAN-NAME
+          psk: password
+
+    sudo SNAP_APP_DATA_PATH=$(pwd) ./bin/snappy-wlan-config -i="test_config.yaml"
+
+Now you chan check the generated files:
+
+    cat /etc/network/interfaces.d/wlan0
+    cat wifi_client_wlan0.conf
